@@ -24,7 +24,7 @@ def _suggested(tool_text: str) -> str | None:
     lines = tool_text.split(marker, 1)[1].splitlines()[1:]
     keep = []
     for ln in lines:
-        if not ln.startswith("    "):
+        if ln and not ln.startswith("    "):
             break
         keep.append(ln[4:])
     return "\n".join(keep).strip() or None

@@ -259,7 +259,7 @@ def format_block(tool_name: str, failures: list[tuple[int, int, dict]], mode: st
             lines.append(f"  x {v['detail']} -> {v['fix']}")
         if r.get("suggested_text"):
             lines.append("  suggested text that passes every rule:")
-            lines.extend("    " + ln for ln in r["suggested_text"].splitlines())
+            lines.extend(("    " + ln).rstrip() for ln in r["suggested_text"].splitlines())
     if mode == "block":
         lines.append("Rewrite the post to fix every item, then call the tool again.")
     return "\n".join(lines)

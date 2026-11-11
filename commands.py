@@ -39,7 +39,7 @@ def render_report(report: dict) -> str:
             out.append(f"  x {v['detail']} -> {v['fix']}")
         if r["suggested_text"]:
             out.append("  suggested:")
-            out.extend("    " + ln for ln in r["suggested_text"].splitlines())
+            out.extend(("    " + ln).rstrip() for ln in r["suggested_text"].splitlines())
     return "\n".join(out)
 
 
@@ -86,7 +86,7 @@ def run(guard: Guard, raw: str) -> str:
             if not items:
                 return "no decisions yet"
             return "\n".join(
-                f"{i['at']}  {i['verdict']:<8} {i['tool']}  {','.join(i.get('campaigns') or []) or '-'}"
+                f"{str(i['at'])[:16].replace('T', ' ')} UTC  {i['verdict']:<8} {i['tool']}  {','.join(i.get('campaigns') or []) or '-'}"
                 f"  {i.get('preview', '')[:50]!r}" for i in items)
         if cmd == "forget":
             return f"cleared {guard.clear_history()} remembered posts"

@@ -134,7 +134,9 @@ def evaluate(text: str, campaign: Campaign, history: list[dict] | None = None,
         dup = find_duplicate(text, history, duplicate_threshold)
         if dup:
             pct = int(dup["similarity"] * 100)
-            out.append(Violation("duplicate", f"{pct}% the same as a post sent {dup.get('at', 'recently')}",
+            when = str(dup.get("at") or "")[:16].replace("T", " ")
+            when = f"on {when} UTC" if when else "recently"
+            out.append(Violation("duplicate", f"{pct}% the same as a post sent {when}",
                                  "write a new post instead of reusing one"))
     return out
 
