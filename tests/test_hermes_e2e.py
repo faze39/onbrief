@@ -60,6 +60,7 @@ def test_agent_loop_blocks_then_allows(tmp_path):
         assert out.returncode == 0, out.stderr
     finally:
         model.terminate()
+        _hermes(home, "gateway", "stop")  # the chat may have started a gateway for this home
 
     sent = [json.loads(l)["text"] for l in
             (home / "plugin-data" / "demo_outbox" / "outbox.jsonl").read_text().splitlines()]

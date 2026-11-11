@@ -87,7 +87,7 @@ def run(guard: Guard, raw: str) -> str:
                 return "no decisions yet"
             return "\n".join(
                 f"{str(i['at'])[:16].replace('T', ' ')} UTC  {i['verdict']:<8} {i['tool']}  {','.join(i.get('campaigns') or []) or '-'}"
-                f"  {i.get('preview', '')[:50]!r}" for i in items)
+                f"  {i.get('preview', '')[:36]!r}" for i in items)
         if cmd == "forget":
             return f"cleared {guard.clear_history()} remembered posts"
         if cmd == "examples":
