@@ -1,0 +1,12 @@
+# A hackathon demo post that has to tag the organiser and link the repo.
+campaigns:
+  - name: hermes-hackathon
+    description: Demo post for the Hermes Agent plugin hackathon
+    required_mentions: ["@NousResearch"]
+    required_links: ["github.com/"]
+    banned_patterns:
+      - pattern: "\\s*\\u2014\\s*"
+        label: "an em dash"
+        replace_with: ", "
+    max_length: 280
+    no_duplicates: true

@@ -1,0 +1,5 @@
+name: demo_outbox
+version: "0.1.0"
+description: "Demo only: a stand-in posting tool that appends posts to a local outbox file instead of publishing them."
+provides_tools:
+  - outbox_create_post

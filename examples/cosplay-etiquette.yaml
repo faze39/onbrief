@@ -1,0 +1,21 @@
+# Modelled on a creator quote-post campaign brief about filming etiquette at
+# cosplay events. Edit the values to match the brief you were given.
+campaigns:
+  - name: cosplay-etiquette
+    description: Quote posts for the filming etiquette campaign
+    match:
+      contains_any: [cosplay, convention, filming]
+    required_hashtags: ["#CosplayAndCameras", "#FilmingEtiquette"]
+    banned_words: [children, kids, pedophile]
+    banned_patterns:
+      - pattern: "\\b\\d{3}[-. ]?\\d{3}[-. ]?\\d{4}\\b"
+        label: "a phone number (no personal info)"
+      - pattern: "[\\w.+-]+@[\\w-]+\\.[\\w.]+"
+        label: "an email address (no personal info)"
+      - pattern: "\\s*\\u2014\\s*"
+        label: "an em dash"
+        replace_with: ", "
+    max_hashtags: 4
+    max_length: 280
+    length_counting: x
+    no_duplicates: true

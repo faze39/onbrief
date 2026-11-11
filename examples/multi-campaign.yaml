@@ -1,0 +1,21 @@
+# Several briefs in one file. Each post is checked against every campaign whose
+# match block fits; `onbrief use <name>` forces one campaign for a while.
+campaigns:
+  - name: cosplay-etiquette
+    match:
+      contains_any: [cosplay, filming]
+    required_hashtags: ["#CosplayAndCameras", "#FilmingEtiquette"]
+    banned_words: [children, kids, pedophile]
+    max_length: 280
+  - name: hermes-hackathon
+    match:
+      contains_any: [hermes, plugin]
+    required_mentions: ["@NousResearch"]
+    max_length: 280
+  - name: house-style
+    description: Applies to every guarded post
+    banned_patterns:
+      - pattern: "\\s*\\u2014\\s*"
+        label: "an em dash"
+        replace_with: ", "
+    no_duplicates: true
